@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Check, Info } from 'lucide-react';
+import { Check, Info, MessageCircle } from 'lucide-react';
 import FinalCTA from '../components/FinalCTA';
 
 const Pricing = () => {
@@ -64,10 +64,26 @@ const Pricing = () => {
                         ))}
                     </div>
 
-                    <div className="pricing-note">
-                        <div className="note-card glass">
-                            <Info size={24} className="text-accent" />
-                            <p>All plans include a dedicated account strategist and a final visual guidebook for your brand.</p>
+                    <div className="pricing-footer">
+                        <div className="pricing-note">
+                            <div className="note-card glass">
+                                <Info size={24} className="text-accent" />
+                                <p>All plans include a dedicated account strategist and a final visual guidebook for your brand.</p>
+                            </div>
+                        </div>
+
+                        <div className="whatsapp-section">
+                            <h3>Questions About Pricing?</h3>
+                            <p>Chat directly with our team to customize a plan that fits your needs perfectly.</p>
+                            <a 
+                                href="https://wa.me/919876543210?text=Hi%20GrowthKaro!%20I%20want%20to%20discuss%20pricing%20for%20my%20project."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-whatsapp"
+                            >
+                                <MessageCircle size={20} />
+                                Message on WhatsApp
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -76,6 +92,19 @@ const Pricing = () => {
             <FinalCTA />
 
             <style jsx="true">{`
+        .internal-hero {
+          background: var(--primary);
+          color: white;
+          padding: 80px 0;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        [data-theme='dark'] .internal-hero {
+          background: var(--bg-secondary);
+        }
+        .internal-hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .internal-hero p { font-size: 1.2rem; opacity: 0.8; max-width: 700px; margin: 0 auto; }
+        
         .pricing-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -130,7 +159,80 @@ const Pricing = () => {
         }
         .note-card p { margin: 0; color: var(--text-muted); font-weight: 500; }
 
-        @media (max-width: 992px) { .pricing-grid { grid-template-columns: 1fr; } }
+        .pricing-footer {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem;
+          margin-top: 4rem;
+        }
+
+        .whatsapp-section {
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
+          padding: 3rem 2.5rem;
+          background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05));
+          border: 1px solid rgba(37, 211, 102, 0.2);
+          border-radius: var(--radius-xl);
+          backdrop-filter: blur(10px);
+          width: 100%;
+        }
+        .whatsapp-section h3 {
+          font-size: 1.8rem;
+          margin-bottom: 1rem;
+          color: var(--text-main);
+        }
+        .whatsapp-section p {
+          color: var(--text-muted);
+          font-size: 1.05rem;
+          margin-bottom: 2rem;
+          line-height: 1.6;
+        }
+        .btn-whatsapp {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.75rem;
+          background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+          color: white;
+          padding: 0.85rem 2rem;
+          border-radius: 999px;
+          font-weight: 700;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+          text-decoration: none;
+          border: none;
+          cursor: pointer;
+        }
+        .btn-whatsapp:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+        .btn-whatsapp:active {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 992px) { 
+          .pricing-grid { grid-template-columns: 1fr; }
+          .whatsapp-section {
+            padding: 2rem 1.5rem;
+          }
+          .whatsapp-section h3 {
+            font-size: 1.5rem;
+          }
+        }
+        @media (max-width: 576px) {
+          .pricing-card {
+            padding: 2rem;
+          }
+          .whatsapp-section {
+            padding: 1.5rem 1.25rem;
+          }
+          .btn-whatsapp {
+            width: 100%;
+            justify-content: center;
+          }
+        }
       `}</style>
         </div>
     );

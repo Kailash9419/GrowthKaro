@@ -19,12 +19,12 @@ const FinalCTA = () => {
 
             <style jsx="true">{`
         .final-cta-section {
-          padding: 100px 0;
+          padding: 60px 0;
           background: var(--bg-main);
         }
         .cta-card {
           background: linear-gradient(135deg, var(--primary) 0%, #2D4A80 100%);
-          padding: 80px 40px;
+          padding: 50px 30px;
           border-radius: var(--radius-xl);
           text-align: center;
           color: white;
@@ -78,7 +78,7 @@ const FinalCTA = () => {
 
         @media (max-width: 768px) {
           .cta-card h2 { font-size: 2rem; }
-          .cta-card { padding: 60px 20px; }
+          .cta-card { padding: 40px 20px; }
         }
       `}</style>
         </section>

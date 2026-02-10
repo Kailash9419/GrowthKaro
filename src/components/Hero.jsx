@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading completion after 2 seconds
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const chartData = [
+    { value: 40, label: 'Jan' },
+    { value: 70, label: 'Feb' },
+    { value: 50, label: 'Mar' },
+    { value: 90, label: 'Apr' },
+    { value: 100, label: 'May' },
+  ];
+
   return (
     <section className="hero">
       <div className="hero-bg-gradient"></div>
@@ -47,19 +66,59 @@ const Hero = () => {
               <div className="dot green"></div>
             </div>
             <div className="mockup-body">
-              <div className="skeleton title"></div>
-              <div className="skeleton-grid">
-                <div className="skeleton item"></div>
-                <div className="skeleton item"></div>
-                <div className="skeleton item"></div>
-              </div>
-              <div className="skeleton-graph">
-                <div className="bar" style={{ height: '40%' }}></div>
-                <div className="bar" style={{ height: '70%' }}></div>
-                <div className="bar" style={{ height: '50%' }}></div>
-                <div className="bar" style={{ height: '90%' }}></div>
-                <div className="bar accent" style={{ height: '100%' }}></div>
-              </div>
+              {isLoaded ? (
+                <>
+                  <div className="loaded-title">Analytics Dashboard</div>
+                  <div className="loaded-grid">
+                    <div className="loaded-item">
+                      <span className="loaded-label">Traffic</span>
+                      <span className="loaded-value">+284%</span>
+                    </div>
+                    <div className="loaded-item">
+                      <span className="loaded-label">Conversions</span>
+                      <span className="loaded-value">+142%</span>
+                    </div>
+                    <div className="loaded-item">
+                      <span className="loaded-label">Revenue</span>
+                      <span className="loaded-value">+3.2x</span>
+                    </div>
+                  </div>
+                  <div className="loaded-graph">
+                    {chartData.map((data, idx) => (
+                      <motion.div
+                        key={idx}
+                        className="loaded-bar-wrapper"
+                        initial={{ height: 0 }}
+                        animate={{ height: '100%' }}
+                        transition={{ duration: 0.6, delay: idx * 0.1 }}
+                      >
+                        <div
+                          className={`loaded-bar ${idx === chartData.length - 1 ? 'accent' : ''}`}
+                          style={{ height: `${data.value}%` }}
+                        >
+                          <span className="bar-label">{data.label}</span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="skeleton title"></div>
+                  <div className="skeleton-grid">
+                    <div className="skeleton item"></div>
+                    <div className="skeleton item"></div>
+                    <div className="skeleton item"></div>
+                  </div>
+                  <div className="skeleton-graph">
+                    <div className="bar" style={{ height: '40%' }}></div>
+                    <div className="bar" style={{ height: '70%' }}></div>
+                    <div className="bar" style={{ height: '50%' }}></div>
+                    <div className="bar" style={{ height: '90%' }}></div>
+                    <div className="bar accent" style={{ height: '100%' }}></div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </motion.div>
@@ -68,7 +127,7 @@ const Hero = () => {
       <style jsx="true">{`
         .hero {
           position: relative;
-          padding: 120px 0 100px;
+          padding: 80px 0 60px;
           overflow: hidden;
         }
         .hero-bg-gradient {
@@ -186,18 +245,110 @@ const Hero = () => {
         }
         .bar {
           flex: 1;
-          background: var(--border);
+          background: linear-gradient(90deg, var(--border) 25%, rgba(255, 255, 255, 0.1) 50%, var(--border) 75%);
+          background-size: 200% 100%;
+          animation: loading 1.5s infinite;
           border-radius: 6px 6px 0 0;
           min-height: 10%;
         }
         .bar.accent {
-          background: linear-gradient(to top, var(--accent), #14B8A6);
+          background: linear-gradient(90deg, rgba(45, 212, 191, 0.6) 25%, rgba(45, 212, 191, 1) 50%, rgba(45, 212, 191, 0.6) 75%);
+          background-size: 200% 100%;
+          animation: loading 1.5s infinite, glow 2s ease-in-out infinite;
           box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
         }
 
         @keyframes loading {
           0% { background-position: 200% 0; }
           100% { background-position: -200% 0; }
+        }
+
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 15px rgba(45, 212, 191, 0.2); }
+          50% { box-shadow: 0 0 30px rgba(45, 212, 191, 0.6); }
+        }
+
+        /* Loaded State Styles */
+        .loaded-title {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--text-main);
+          margin-bottom: 2rem;
+        }
+        
+        .loaded-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+          margin-bottom: 3rem;
+        }
+        
+        .loaded-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        
+        .loaded-label {
+          font-size: 0.875rem;
+          color: var(--text-muted);
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .loaded-value {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: var(--accent);
+        }
+        
+        .loaded-graph {
+          display: flex;
+          align-items: flex-end;
+          gap: 0.8rem;
+          height: 150px;
+          background: rgba(45, 212, 191, 0.05);
+          padding: 1rem;
+          border-radius: 12px;
+          margin-top: auto;
+        }
+        
+        .loaded-bar-wrapper {
+          flex: 1;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          min-height: 10%;
+        }
+        
+        .loaded-bar {
+          width: 100%;
+          background: linear-gradient(to top, var(--primary-light), var(--primary));
+          border-radius: 6px 6px 0 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          padding-top: 0.5rem;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+        
+        .loaded-bar:hover {
+          opacity: 0.8;
+          transform: scaleY(1.05);
+        }
+        
+        .loaded-bar.accent {
+          background: linear-gradient(to top, var(--accent), #14B8A6);
+          box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+        }
+        
+        .bar-label {
+          font-size: 0.75rem;
+          color: white;
+          font-weight: 600;
+          opacity: 0.8;
         }
 
         @media (max-width: 1200px) {

@@ -1,30 +1,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Clock, Zap, ArrowUpRight } from 'lucide-react';
+import { ShoppingCart, Code2, Home, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CaseStudiesPreview = () => {
     const caseStudies = [
         {
-            title: 'E-Commerce Growth',
-            metric: '+42% Lead Conversion',
-            icon: <TrendingUp className="text-accent" />,
+            title: 'E-Commerce Breakthrough',
+            description: 'Transformed an online store with modern UI/UX',
+            metric: '+42% Sales Conversion',
+            emoji: '🛍️',
+            icon: <ShoppingCart className="text-white" size={32} />,
             tag: 'E-Commerce',
-            bg: '#EEF2FF'
+            gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            accentColor: '#667eea'
         },
         {
-            title: 'SaaS Optimization',
+            title: 'SaaS Performance',
+            description: 'Optimized platform for millions of users',
             metric: '–60% Page Load Time',
-            icon: <Zap className="text-accent" />,
+            emoji: '⚡',
+            icon: <Code2 className="text-white" size={32} />,
             tag: 'Software',
-            bg: '#F0FDFA'
+            gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            accentColor: '#f5576c'
         },
         {
-            title: 'Real Estate Sales',
-            metric: '3x Sales Growth in 60 Days',
-            icon: <Clock className="text-accent" />,
-            tag: 'Industry',
-            bg: '#FDF2F8'
+            title: 'Real Estate Boom',
+            description: 'Scaled sales pipeline with conversion tools',
+            metric: '3x Sales in 60 Days',
+            emoji: '🏠',
+            icon: <Home className="text-white" size={32} />,
+            tag: 'Real Estate',
+            gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            accentColor: '#00f2fe'
         }
     ];
 
@@ -46,17 +55,23 @@ const CaseStudiesPreview = () => {
                         <motion.div
                             key={study.title}
                             className="case-card"
-                            whileHover={{ scale: 1.02 }}
+                            whileHover={{ scale: 1.05, translateY: -8 }}
+                            transition={{ duration: 0.3 }}
                         >
-                            <div className="case-visual" style={{ backgroundColor: study.bg }}>
-                                <div className="case-metric-badge">
+                            <div className="case-visual" style={{ background: study.gradient }}>
+                                <div className="case-icon-container">
                                     {study.icon}
-                                    <span>{study.metric}</span>
                                 </div>
+                                <div className="case-emoji-badge">{study.emoji}</div>
                             </div>
                             <div className="case-content">
-                                <span className="case-tag">{study.tag}</span>
+                                <span className="case-tag" style={{ color: study.accentColor }}>{study.tag}</span>
                                 <h3>{study.title}</h3>
+                                <p className="case-description">{study.description}</p>
+                                <div className="case-metric">
+                                    <span className="metric-icon">✓</span>
+                                    <strong>{study.metric}</strong>
+                                </div>
                                 <Link to="/case-studies" className="read-more">
                                     Read Success Story <ArrowUpRight size={16} />
                                 </Link>
@@ -88,45 +103,82 @@ const CaseStudiesPreview = () => {
           background: var(--bg-card);
           border: 1px solid var(--border);
           box-shadow: var(--shadow);
+          transition: all 0.3s ease;
+        }
+        .case-card:hover {
+          box-shadow: 0 15px 40px rgba(45, 212, 191, 0.15);
+          border-color: var(--accent);
         }
         .case-visual {
-          height: 240px;
+          height: 200px;
           display: flex;
           align-items: center;
           justify-content: center;
           position: relative;
+          overflow: hidden;
         }
-        .case-metric-badge {
-          background: white;
-          padding: 1.25rem 2rem;
-          border-radius: var(--radius-lg);
-          box-shadow: var(--shadow-lg);
+        .case-icon-container {
           display: flex;
-          flex-direction: column;
           align-items: center;
-          gap: 0.5rem;
-          font-weight: 800;
-          font-size: 1.1rem;
-          color: var(--primary);
+          justify-content: center;
+          z-index: 2;
+          position: relative;
         }
-        [data-theme='dark'] .case-metric-badge {
-          background: var(--bg-secondary);
-          color: white;
+        .case-emoji-badge {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          font-size: 2.5rem;
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(10px);
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 1rem;
+          border: 1px solid rgba(255, 255, 255, 0.3);
         }
         .case-content {
           padding: 2rem;
         }
         .case-tag {
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           font-weight: 700;
-          color: var(--accent);
           text-transform: uppercase;
           margin-bottom: 0.75rem;
           display: block;
+          letter-spacing: 1px;
         }
         .case-content h3 {
           font-size: 1.4rem;
+          margin-bottom: 0.75rem;
+          color: var(--text-main);
+        }
+        .case-description {
+          font-size: 0.9rem;
+          color: var(--text-muted);
+          margin-bottom: 1.25rem;
+          line-height: 1.5;
+        }
+        .case-metric {
+          background: rgba(45, 212, 191, 0.08);
+          padding: 0.85rem 1.2rem;
+          border-radius: 0.75rem;
           margin-bottom: 1.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          border-left: 3px solid var(--accent);
+        }
+        .metric-icon {
+          color: var(--accent);
+          font-weight: 800;
+          font-size: 1.2rem;
+        }
+        .case-metric strong {
+          color: var(--text-main);
+          font-size: 0.95rem;
         }
         .read-more {
           display: flex;
@@ -134,9 +186,11 @@ const CaseStudiesPreview = () => {
           gap: 0.5rem;
           font-weight: 600;
           font-size: 0.9rem;
-          color: var(--text-muted);
+          color: var(--accent);
+          transition: all 0.3s ease;
         }
         .read-more:hover {
+          gap: 0.75rem;
           color: var(--primary);
         }
         [data-theme='dark'] .read-more:hover {
@@ -156,6 +210,14 @@ const CaseStudiesPreview = () => {
           }
           .case-grid {
             grid-template-columns: 1fr;
+          }
+          .case-visual {
+            height: 180px;
+          }
+          .case-emoji-badge {
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
           }
         }
       `}</style>

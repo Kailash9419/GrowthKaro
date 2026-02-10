@@ -6,16 +6,16 @@
   --accent: #2DD4BF;
   /* Teal/Green */
   --accent-hover: #14B8A6;
-  --text-main: #1F2937;
-  --text-muted: #6B7280;
-  --bg-main: #FFFFFF;
-  --bg-secondary: #F9FAFB;
+  --text-main: #2D3748;
+  --text-muted: #718096;
+  --bg-main: #F8FAFC;
+  --bg-secondary: #F1F5F9;
   --bg-card: #FFFFFF;
-  --border: #E5E7EB;
+  --border: #E2E8F0;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
   --max-width: 1280px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -120,37 +120,48 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #1A2B4C 0%, #2D4A80 100%);
   color: white;
+  box-shadow: 0 4px 15px rgba(26, 43, 76, 0.2);
 }
 
 [data-theme='dark'] .btn-primary {
-  background-color: var(--accent);
+  background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
   color: var(--bg-main);
+  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  opacity: 0.9;
+  box-shadow: 0 8px 25px rgba(26, 43, 76, 0.3);
+}
+
+[data-theme='dark'] .btn-primary:hover {
+  box-shadow: 0 8px 25px rgba(45, 212, 191, 0.4);
 }
 
 .btn-secondary {
   border: 2px solid var(--primary);
   color: var(--primary);
+  background-color: transparent;
 }
 
 [data-theme='dark'] .btn-secondary {
   border-color: var(--accent);
   color: var(--accent);
+  background-color: transparent;
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #1A2B4C 0%, #2D4A80 100%);
   color: white;
+  border-color: #2D4A80;
+  transform: translateY(-2px);
 }
 
 [data-theme='dark'] .btn-secondary:hover {
-  background-color: var(--accent);
+  background: linear-gradient(135deg, #2DD4BF 0%, #14B8A6 100%);
   color: var(--bg-main);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }

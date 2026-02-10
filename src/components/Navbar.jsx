@@ -7,6 +7,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
     const location = useLocation();
 
     const navLinks = [
+        { name: 'Home', path: '/' },
         { name: 'Services', path: '/services' },
         { name: 'Process', path: '/process' },
         { name: 'Case Studies', path: '/case-studies' },
@@ -81,6 +82,7 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           border-bottom: 1px solid var(--border);
           padding: 1rem 0;
           transition: var(--transition);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
         .nav-wrapper {
           display: flex;
@@ -94,9 +96,14 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           font-family: 'Poppins', sans-serif;
           font-weight: 800;
           font-size: 1.5rem;
+          background: linear-gradient(135deg, #1A2B4C 0%, #2D4A80 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
         .logo-text span {
           color: var(--accent);
+          -webkit-text-fill-color: var(--accent);
         }
         .desktop-links {
           display: flex;
@@ -107,6 +114,20 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           font-weight: 500;
           font-size: 0.95rem;
           color: var(--text-muted);
+          position: relative;
+        }
+        .desktop-links a::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: var(--accent);
+          transition: width 0.3s ease;
+        }
+        .desktop-links a:hover::after, .desktop-links a.active::after {
+          width: 100%;
         }
         .desktop-links a:hover, .desktop-links a.active {
           color: var(--accent);
@@ -121,9 +142,12 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
           color: var(--text-main);
           padding: 0.5rem;
           border-radius: 50%;
+          transition: all 0.3s ease;
         }
         .theme-toggle:hover {
-          background: var(--bg-secondary);
+          background: rgba(45, 212, 191, 0.1);
+          color: var(--accent);
+          transform: rotate(20deg);
         }
         .mobile-menu-btn {
           display: none;

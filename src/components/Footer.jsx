@@ -16,9 +16,9 @@ const Footer = () => {
                             We build high-performance websites that turn visitors into customers. Your growth is our mission.
                         </p>
                         <div className="social-links">
-                            <a href="#"><Linkedin size={20} /></a>
-                            <a href="#"><Twitter size={20} /></a>
-                            <a href="#"><Instagram size={20} /></a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn"><Linkedin size={20} /></a>
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><Twitter size={20} /></a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram"><Instagram size={20} /></a>
                         </div>
                     </div>
 
@@ -46,8 +46,8 @@ const Footer = () => {
                     <div className="footer-contact">
                         <h3>Contact Us</h3>
                         <ul className="contact-info">
-                            <li><Mail size={18} /> hello@growthkaro.com</li>
-                            <li><Phone size={18} /> +91 7017628078</li>
+                            <li><Mail size={18} /> <a href="mailto:hello@growthkaro.com">hello@growthkaro.com</a></li>
+                            <li><Phone size={18} /> <a href="tel:+917017628078">+91 7017628078</a></li>
                             <li><MapPin size={18} /> Haldwani, Nainital, UK, India</li>
                         </ul>
                     </div>
@@ -56,8 +56,8 @@ const Footer = () => {
                 <div className="footer-bottom">
                     <p>&copy; {new Date().getFullYear()} GrowthKaro. All rights reserved.</p>
                     <div className="footer-bottom-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                        <Link to="/privacy">Privacy Policy</Link>
+                        <Link to="/terms">Terms of Service</Link>
                     </div>
                 </div>
             </div>
@@ -138,6 +138,14 @@ const Footer = () => {
           color: var(--text-muted);
           margin-bottom: 1rem;
         }
+        .contact-info a {
+          color: var(--text-muted);
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+        .contact-info a:hover {
+          color: var(--accent);
+        }
         .footer-bottom {
           padding-top: 40px;
           border-top: 1px solid var(--border);
@@ -150,6 +158,14 @@ const Footer = () => {
         .footer-bottom-links {
           display: flex;
           gap: 2rem;
+        }
+        .footer-bottom-links a {
+          color: var(--text-muted);
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+        .footer-bottom-links a:hover {
+          color: var(--accent);
         }
         @media (max-width: 992px) {
           .footer-grid {

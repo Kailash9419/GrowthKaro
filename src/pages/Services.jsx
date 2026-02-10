@@ -69,6 +69,7 @@ const Services = () => {
           color: white;
           padding: 80px 0;
           text-align: center;
+          margin-bottom: 20px;
         }
         [data-theme='dark'] .internal-hero {
           background: var(--bg-secondary);

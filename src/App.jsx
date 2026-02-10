@@ -11,14 +11,19 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import FreeAudit from './pages/FreeAudit';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
 import WhatsAppWidget from './components/WhatsAppWidget';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    if (savedTheme === 'light') {
+      setIsDarkMode(false);
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
       setIsDarkMode(true);
       document.documentElement.setAttribute('data-theme', 'dark');
     }
@@ -46,6 +51,8 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/free-audit" element={<FreeAudit />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
         <Footer />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Code, Target, ShoppingBag, Search, LifeBuoy, ArrowRight } from 'lucide-react';
+import { Layout, Code, Target, ShoppingBag, Search, LifeBuoy, ArrowRight, Bot, Zap, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -34,6 +34,21 @@ const ServicesSection = () => {
             icon: <LifeBuoy size={32} />,
             title: 'Maintenance & Support',
             desc: 'Dedicated technical support and regular updates to keep your website running smoothly 24/7.'
+        },
+        {
+            icon: <ShieldCheck size={32} />,
+            title: 'QA & Testing',
+            desc: 'Rigorous manual and automated testing to ensure your software is bug-free and reliable.'
+        },
+        {
+            icon: <Zap size={32} />,
+            title: 'Test & Workflow Automation',
+            desc: 'Automate repetitive tasks and deployments to speed up your operations and reduce human error.'
+        },
+        {
+            icon: <Bot size={32} />,
+            title: 'AI Agents & Chatbots',
+            desc: 'Intelligent AI assistants trained on your data to handle customer support and automate sales 24/7.'
         }
     ];
 

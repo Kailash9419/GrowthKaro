@@ -14,6 +14,8 @@ import FreeAudit from './pages/FreeAudit';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import AIAgentWidget from './components/AIAgentWidget';
+
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -57,6 +59,7 @@ function App() {
         </main>
         <Footer />
         <WhatsAppWidget />
+        <AIAgentWidget />
       </div>
     </Router>
   );

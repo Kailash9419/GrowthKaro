@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Layout, Code, Target, ShoppingBag, Search, LifeBuoy } from 'lucide-react';
+import { Layout, Code, Target, ShoppingBag, Search, LifeBuoy, Bot, Zap, ShieldCheck } from 'lucide-react';
 import FinalCTA from '../components/FinalCTA';
 
 const Services = () => {
@@ -27,6 +27,21 @@ const Services = () => {
             icon: <Search className="text-accent" size={40} />,
             title: 'Performance SEO',
             points: ['Technical SEO Audit', 'Keyword Strategy', 'Speed Optimization', 'Backlink Building']
+        },
+        {
+            icon: <ShieldCheck className="text-accent" size={40} />,
+            title: 'QA & Software Testing',
+            points: ['Automated End-to-End Testing', 'Manual QA & Bug Tracking', 'Performance & Load Testing', 'Security Audits']
+        },
+        {
+            icon: <Zap className="text-accent" size={40} />,
+            title: 'Workflow Automation',
+            points: ['Custom CI/CD Pipelines', 'Business Process Automation', 'API & Webhook Integrations', 'Data Syncing']
+        },
+        {
+            icon: <Bot className="text-accent" size={40} />,
+            title: 'AI Agent Solutions',
+            points: ['Custom Chatbot Development', 'LLM Integration & Tuning', 'AI-Driven Customer Support', 'Internal Workflow Bots']
         }
     ];
 

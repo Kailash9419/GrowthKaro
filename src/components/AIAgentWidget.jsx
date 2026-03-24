@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Sparkles, X } from 'lucide-react';
+import { Bot, Send, Sparkles, X, DollarSign, LineChart, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const AIAgentWidget = () => {
@@ -58,11 +58,14 @@ const AIAgentWidget = () => {
                     >
                         <div className="ai-chat-header">
                             <div className="ai-header-info">
-                                <div className="ai-avatar bg-accent">
+                                <div className="ai-avatar">
                                     <Sparkles size={16} color="white" />
+                                    <span className="online-indicator"></span>
                                 </div>
                                 <div>
-                                    <h4>AI Assistant</h4>
+                                    <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem' }}>
+                                        GrowthBot <span className="ai-badge">AI</span>
+                                    </h4>
                                     <span>Online</span>
                                 </div>
                             </div>
@@ -74,7 +77,7 @@ const AIAgentWidget = () => {
                         <div className="ai-chat-body">
                             {messages.map(msg => (
                                 <div key={msg.id} className={`ai-message-wrapper ${msg.sender}`}>
-                                    <div className="ai-message">
+                                    <div className={`ai-message ${msg.sender === 'ai' ? 'shimmer-bg' : ''}`}>
                                         <p>{msg.text}</p>
                                     </div>
                                 </div>
@@ -83,6 +86,18 @@ const AIAgentWidget = () => {
                         </div>
                         
                         <div className="ai-chat-footer">
+                            {messages.length === 1 && (
+                                <motion.div 
+                                    className="quick-actions"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                >
+                                    <button type="button" className="quick-chip" onClick={() => setInput("How much does an audit cost?")}><DollarSign size={14}/> Audit Pricing</button>
+                                    <button type="button" className="quick-chip" onClick={() => setInput("Calculate my ROI")}><LineChart size={14}/> Calculate ROI</button>
+                                    <button type="button" className="quick-chip" onClick={() => setInput("Automation services?")}><Zap size={14}/> Automation</button>
+                                </motion.div>
+                            )}
                             <form onSubmit={handleSend} className="ai-input-form">
                                 <input 
                                     type="text" 
@@ -102,7 +117,11 @@ const AIAgentWidget = () => {
             {!isOpen && (
                 <motion.button 
                     initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
+                    animate={{ scale: 1, y: [0, -6, 0] }}
+                    transition={{ 
+                        scale: { duration: 0.4 }, 
+                        y: { duration: 3, repeat: Infinity, ease: "easeInOut" } 
+                    }}
                     className="ai-trigger-btn"
                     onClick={() => setIsOpen(true)}
                     whileHover={{ scale: 1.05 }}

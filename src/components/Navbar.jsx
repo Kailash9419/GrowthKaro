@@ -47,6 +47,9 @@ const Navbar = ({ isDarkMode, toggleTheme }) => {
                         <Link to="/free-audit" className="btn btn-primary hide-mobile">
                             Free Website Audit
                         </Link>
+                        <Link to="/roi-calculator" className="btn btn-secondary hide-mobile">
+                            ROI Calculator
+                        </Link>
                         <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
                             {isOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>

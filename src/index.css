@@ -255,53 +255,71 @@ button {
 
 .ai-chat-header {
   padding: 1rem 1.25rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-  color: white;
+  background: linear-gradient(90deg, var(--bg-main) 0%, var(--bg-secondary) 100%);
+  border-bottom: 1px solid var(--border);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-
-[data-theme='dark'] .ai-chat-header {
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border);
-}
-
-.ai-header-info {
-  display: flex;
   align-items: center;
-  gap: 0.75rem;
 }
+
+.ai-header-info { display: flex; align-items: center; gap: 0.85rem; }
 
 .ai-avatar {
-  width: 36px;
-  height: 36px;
+  position: relative;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 10px rgba(45, 212, 191, 0.3);
 }
 
-.ai-header-info h4 {
-  font-size: 1rem;
-  margin: 0;
-  color: white;
+.online-indicator {
+  position: absolute;
+  bottom: 0px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background-color: #10B981;
+  border-radius: 50%;
+  border: 2px solid var(--bg-main);
+  animation: pulse-online 2s infinite;
 }
 
-.ai-header-info span {
-  font-size: 0.75rem;
-  opacity: 0.8;
+@keyframes pulse-online {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
+
+.ai-badge {
+  font-size: 0.65rem;
+  background: rgba(45, 212, 191, 0.15);
+  color: var(--accent);
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ai-header-info h4 { margin: 0; font-size: 1rem; font-weight: 600; color: var(--text-main); }
+.ai-header-info span { margin: 0; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
 
 .ai-close-btn {
   background: transparent;
-  color: white;
+  color: var(--text-muted);
   opacity: 0.8;
   padding: 0.25rem;
 }
 
 .ai-close-btn:hover {
   opacity: 1;
+  color: var(--accent);
 }
 
 .ai-chat-body {
@@ -342,19 +360,77 @@ button {
 }
 
 .user.ai-message-wrapper .ai-message {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   color: white;
   border-radius: 1rem 1rem 0 1rem;
+  box-shadow: 0 4px 15px rgba(45, 212, 191, 0.2);
 }
 
 [data-theme='dark'] .user.ai-message-wrapper .ai-message {
-    color: var(--bg-main);
+  color: var(--bg-main);
+}
+
+/* Shimmer Bubble Effect */
+.shimmer-bg {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-bg::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: sweep 3s infinite linear;
+}
+[data-theme='light'] .shimmer-bg::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+}
+@keyframes sweep {
+  0% { left: -100%; }
+  40% { left: 200%; }
+  100% { left: 200%; }
 }
 
 .ai-chat-footer {
-  padding: 1rem;
   background: var(--bg-card);
   border-top: 1px solid var(--border);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Quick Action Chips */
+.quick-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+.quick-actions::-webkit-scrollbar { display: none; } /* Chrome */
+
+.quick-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 0.4rem 0.8rem;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.quick-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(45, 212, 191, 0.05);
+  transform: translateY(-2px);
 }
 
 .ai-input-form {
